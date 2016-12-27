@@ -4,38 +4,49 @@
  */
 
 var express = require('express')
-var app = express()
 var fs= require('fs');
-app.get('/', function (req, res) {
+var path = require('path');
 
-    res.sendFile( __dirname + "/" +"public" +"/"+"index2.html" );
+var app = express();
 
-})
+app.use(express.static(path.join(__dirname, '/public')));
 
-app.get('/index.html', function (req, res) {
-      res.sendFile( __dirname + "/" + "index.html" );
+//app.use('/controllers',express.static(path.join(__dirname,'/public/controllers/')));
 
-})
-app.get('/process_get', function (req, res) {
-    // Prepare output in JSON format
+app.use('/js',express.static(path.join(__dirname, '/js')));
 
-    response = {
-         first_name:req.body.first_name,
-        last_name:req.body.last_name
-    };
+console.log(path.join(__dirname,'/public/controllers'));
 
-//console.log(response);
-    res.end(JSON.stringify(response));
-   // console.log(req);
+
+app.get('/index2.html', function (req, res) {
+      res.sendFile( __dirname + "/public" + "/"+"index2.html" );
+
 });
 
- 
+app.get('/childinfo.html', function (req, res) {
+    res.sendFile( __dirname + "/" + "childinfo.html" );
+
+});
+// app.get('/process_get', function (req, res) {
+//     // Prepare output in JSON format
+//
+//     response = {
+//          first_name:req.body.first_name,
+//         last_name:req.body.last_name
+//     };
+//
+// //console.log(response);
+//     res.end(JSON.stringify(response));
+//    // console.log(req);
+// });
+
+
 var server=app.listen(3000, function () {
     var host =server.address().host;
-    var port=server.address().port
+    var port=server.address().port;
 
     console.log('Example app listening  at %s %s',host,port)
-})
+});
 //
 //  const http= require('http');
 //  const fs= require('fs');

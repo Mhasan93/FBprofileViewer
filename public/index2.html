@@ -1,53 +1,209 @@
+<!--<!DOCTYPE html>-->
+<!--<html  ng-app>-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+
+    <!--&lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
+          <!--integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
+    <!--&lt;!&ndash; Optional theme &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"-->
+          <!--integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+
+    <!--<link rel="stylesheet" href=" https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">-->
+    <!--&lt;!&ndash; Jquery&ndash;&gt;-->
+    <!--<script src="js/jquery-3.1.1.js"></script>-->
+
+    <!--<title>MEAN stack API</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar navbar-default">-->
+    <!--<div class="container-fluid">-->
+        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+        <!--<div class="navbar-header">-->
+
+            <!--<a class="navbar-brand" href="../index.php">FB Profile Viewer</a>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+
+        <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li><a class="navbar-brand" href="">Home</a></li>-->
+            <!--<li><a class="navbar-brand" href="">My Profile</a></li>-->
+
+        <!--</ul>-->
+    <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+<!--</nav>-->
+
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-12 col-lg-12">-->
+                <!--<h1>Contact List Users </h1>-->
+            <!--</div>-->
+
+        <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-12 col-lg-12">-->
+
+                <!--<table id="example" class=" table display" cellspacing="0" width="100%">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>Name</th>-->
+                        <!--<th>Email</th>-->
+                        <!--<th>Number</th>-->
+                        <!--<th>Edit Icon</th>-->
+                        <!--<th>Delete Icon</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--&lt;!&ndash;<tfoot>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th>Name</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th>Email</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th>Number</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th>Edit Icon</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th>Delete Icon</th>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</tfoot>&ndash;&gt;-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+
+    <!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!--<script>-->
+
+    <!--$(document).ready(function(){-->
+        <!--$('#example').dataTable();-->
+
+    <!--});-->
+<!--</script>-->
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" ></script>-->
+<!--<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>-->
+
+
+<!--&lt;!&ndash; jQuery (necessary for Bootstrap's JavaScript plugins) &ndash;&gt;-->
+<!--<script src="js/jquery-3.1.1.min.js"></script>-->
+<!--&lt;!&ndash; Include all compiled plugins (below), or include individual files as needed &ndash;&gt;-->
+<!--<script src="js/bootstrap.min.js"></script>-->
+
+
 <!DOCTYPE html>
-<html  ng-app>
+<html lang="en "ng-app="myApp" ng-controller="appCtrl">
 <head>
     <meta charset="UTF-8">
-
-    <!-- Latest compiled and minified CSS -->
+    <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <title>MEAN stack API</title>
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <!--<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <!-- Jquery-->
+    <script src="../js/jquery-3.1.1.js"></script>
+    <!--<script src="/js/test.js"></script>-->
 </head>
 <body>
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
+<div class="container-fluid">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
 
-            <a class="navbar-brand" href="../index.php">FB Profile Viewer</a>
+<a class="navbar-brand" href="../index.php">FB Profile Viewer</a>
+</div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+
+<ul class="nav navbar-nav navbar-right">
+<li><a class="navbar-brand" href="">Home</a></li>
+<li><a class="navbar-brand" href="">My Profile</a></li>
+
+</ul>
+</div><!-- /.navbar-collapse -->
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <h1>Contact Users List</h1>
+            <!--<input ng-model="test">{{test}}-->
+        </div>
+        <div class="col-md-12 col-lg-12">
+            <br>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
 
-        <ul class="nav navbar-nav navbar-right">
-            <li><a class="navbar-brand" href="">Home</a></li>
-            <li><a class="navbar-brand" href="">My Profile</a></li>
-
-        </ul>
-    </div><!-- /.navbar-collapse -->
-</nav>
-
-    <div class="container">
-        <h1>MEAN stack page </h1>
-
-        <table class="table">
-            <thead>
+            <table id="example" class="display" cellspacing="0" width="100%">
+                <thead>
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Number</th>
-                    <th></th>
+                    <th>Edit Icon</th>
+                    <th>Delete Icon</th>
                 </tr>
-            </thead>
-        </table>
+                </thead>
 
+                <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number</th>
+                    <th>Edit Icon</th>
+                    <th>Delete Icon</th>
+                </tr>
+                </tfoot>
+
+
+
+                <tbody>
+                <tr ng-repeat="contact in contactList">
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.email}}</td>
+                    <td>{{contact.phone}}</td>
+                    <td><button class="btn btn-warning" ng-click="edit(contact._id)">Edit</button></td>
+                    <td><button class="btn btn-danger" ng-click="remove(contact._id)">Remove</button></td>
+
+
+                </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
     </div>
-
-
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" ></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+//<script src="/controllers/controller.js"></script>
+<script src="controllers/controller.js"></script>
+
+
+<script>
+
+
+    $(document).ready(function() {
+        var table = $('#example').DataTable();
+
+        // Event listener to the two range filtering inputs to redraw on input
+        $('#min, #max').keyup( function() {
+            table.draw();
+        } );
+    } );
+</script>
+
 </body>
 </html>
