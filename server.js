@@ -7,11 +7,13 @@ var express = require('express');
 var fs= require('fs');
 var path = require('path');
 var mongojs= require('mongojs');
-var db= mongojs("usersList",['usersList'])
+var db= mongojs("usersList",['users ']);
+var parser=require('body-parser');
 
 var app = express();
 
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(parser.json());
 
 //app.use('/controllers',express.static(path.join(__dirname,'/public/controllers/')));
 
@@ -25,29 +27,64 @@ app.get('/index2.html', function (req, res) {
 
 });
 
+
 app.get('/usersList', function (req, res) {
-  console.log("i recived a Get Req");
-    person1={
-        name:'ahmad',
-        email:'ahmad@hotmail.com',
-        phone:'0597828105'
-   };
-     person2={
-        name:'maali',
-         email:'maali@hotmail.com',
-        phone:'0597828105'
-     };
-     var usersList=[person1,person2];
 
-     console.log( res.json(usersList));
+    console.log("i recived a Get Req");
+    db.users.find(function (err,user) {
+        res.json(user);
 
-
+    })
  });
 
+app.post('/addUser',function (req,res) {
+    console.log(req.body);
+    db.users.insert(req.body,function (err,user) {
+        res.json(user);
+
+    })
+
+});
+app.delete('/deleteUser/:id',function (req,res) {
+    var userId= req.params.id;
+    //find a document using a native ObjectId
+    db.users.remove({_id:mongojs.ObjectId(userId)},function (err,user) {
+        res.json(user);
+        
+    });
+    console.log(userId);
+
+})
+app.get('/listUser/:id',function (req,res) {
+    var userId=req.params.id;
+     //console.log(userId);
+    db.users.findOne({
+        _id:mongojs.ObjectId(userId)},function(err,user){
+        console.log(user.json);
+        res.json(user);
+
+        }
+    )
+
+});
+
+app.put('/editUser/:id',function (req,res) {
+    var userId=req.params.id;
+    db.users.findAndModify({
+        query: {_id: mongojs.ObjectId(userId)},
+        update:{
+            $set:{name:req.body.name, email:req.body.email, phone:req.body.phone}},
+            new:true},function (err,user) {
+        res.json(user);
+        
+    }
+);
+
+});
 
 var server=app.listen(3000, function () {
-    var host =server.address().host;
+
     var port=server.address().port;
 
-    console.log('Example app listening  at %s %s',host,port)
+    console.log('Server Runing   at   %s' ,port)
 });
