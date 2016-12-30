@@ -1,6 +1,5 @@
 var app = angular.module('myApp', []);
 
-
 app.controller('appCtrl', function($scope ,$http,$attrs) {
     console.log("hello from controller");
 
@@ -40,7 +39,7 @@ app.controller('appCtrl', function($scope ,$http,$attrs) {
     $scope.editUser=function (userEditId){
         console.log(userEditId);
 
-        $http.get('/listUser/'+userEditId).then(function (response) {
+        $http.get('/listUserById/'+userEditId).then(function (response) {
            console.log(response.data);
             $scope.user=response.data;
            // console.log( $scope.contactList);

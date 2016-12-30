@@ -20,10 +20,24 @@ app.use(parser.json());
 app.use('/js',express.static(path.join(__dirname, '/js')));
 
 
+app.get('/', function (req, res) {
+    console.log("hi");
+    res.sendFile( __dirname + "/public" + "/"+"fbapi.html" );
+
+});
 
 
-app.get('/index2.html', function (req, res) {
-      res.sendFile( __dirname + "/public" + "/"+"index2.html" );
+
+app.get('/index.html', function (req, res) {
+      res.sendFile( __dirname + "/public" + "/"+"index.html" );
+
+});
+app.get('/FBprofile.html', function (req, res) {
+    res.sendFile( __dirname + "/public" + "/"+"FBprofile.html" );
+
+});
+app.get('/fbapi.html', function (req, res) {
+    res.sendFile( __dirname + "/public" + "/"+"fbapi.html" );
 
 });
 
@@ -55,7 +69,7 @@ app.delete('/deleteUser/:id',function (req,res) {
     console.log(userId);
 
 })
-app.get('/listUser/:id',function (req,res) {
+app.get('/listUserById/:id',function (req,res) {
     var userId=req.params.id;
      //console.log(userId);
     db.users.findOne({
@@ -67,7 +81,19 @@ app.get('/listUser/:id',function (req,res) {
     )
 
 });
+app.get('/listUser/:id',function (req,res) {
+    var userId=req.params.id;
+    console.log(userId);
+    res.sendFile( __dirname + "/public" + "/"+"FBprofile.html" );
+    // db.users.findOne({
+    //     FacebookID:mongojs.ObjectId(userId)},function(err,user){
+    //         console.log(user.json);
+    //         res.json(user);
+    //
+    //     }
+    // )
 
+});
 app.put('/editUser/:id',function (req,res) {
     var userId=req.params.id;
     db.users.findAndModify({
@@ -82,7 +108,7 @@ app.put('/editUser/:id',function (req,res) {
 
 });
 
-var server=app.listen(3000, function () {
+var server=app.listen(5000, function () {
 
     var port=server.address().port;
 

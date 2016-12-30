@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FB Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <!--<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <!-- Jquery-->
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#">FB Profile Viewer</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <a class="navbar-brand"  href="/index.html" ng-href="/index.html"><li>Home</li></a>
+            <li><a class="navbar-brand" href="/FBprofile.html">My Profile</a></li>
+
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="container well">
+
+
+    <div class="row ">
+
+
+        <div class="col-md-12 col-md-12  ">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title add-album">
+                       Facebook Profile
+
+                    </h3>
+                </div>
+                <div class="panel-body"  >
+                    <div class="col-md-8 col-lg-8 " >
+                        <ul class="thumbnails">
+                            <div class="col-lg-4  col-md-4">
+                                <div class="thumbnail" >
+                                    <!--src='".{{user.picture.data.url }}."'-->
+                                    <img  id="img"  style="width:700px;height: 255px; "  >
+                                    <div class="caption" >
+
+                                        <button class="btn btn-info">View Profile</button>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6"   >
+                                <b>UserName</b>  <p id="name">  </p></br></br>
+                                <b>Location</b>  <p id="Location">  </p></br></br>
+                                <b>Age</b>  <p id="age">  </p></br></br>
+                                <b>gender</b>  <p id="gender">  </p></br></br>
+                               <!--<label>Location</label> <label ng-model="userLocation">{{userLocation}}</label><br><br><br>-->
+                               <!--<label>Birthday</label>  <label ng-model="userAge">{{userAge}}</label><br><br><br>-->
+                                <!--<label>Gender</label><label ng-model="userGebder">{{userGebder}}</label><br><br><br>-->
+
+                            </div>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+</div>
+            <div class="row ">
+                  <div class="col-md-12 col-lg-12  ">
+                      <div class="panel panel-info">
+                         <div class="panel-heading">
+                             <h3 class="panel-title add-album">
+                               Work History
+
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<script >
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '150778205410269',
+            xfbml      : true,
+            version    : 'v2.8'
+        });
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                console.log(' sdk  inti is inshed We are connected  both on FB and app.');
+                login();
+            } else if (response.status === 'not_authorized') {
+                console.log('We are not logged in the app .');
+            } else {
+                console.log('You are not logged into Facebook.');
+            }
+        });
+    };
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    // login with facebook with extra permissions
+    function login() {
+        getInfo();
+        FB.login(function(response) {
+            if (response.status === 'connected') {
+
+                console.log("in FB login function");
+                console.log( 'We are connected.2');
+               // getInfo();
+            } else if (response.status === 'not_authorized') {
+                console.log( 'We are not logged in.');
+            } else {
+                console.log('You are not logged into Facebook.');
+            }
+            console.log(response.status);
+        }, {scope:  'email,public_profile,user_freiends,user_birthday' });
+
+    }
+
+    // getting basic user info
+    function getInfo() {
+        FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id,gender,location,birthday,age_range,picture.width(150).height(150)'}, function(response) {
+            console.log( response);
+//            document.getElementById('status').innerHTML = "<img src='" + response.picture.data.url + "'>";
+            document.getElementById('name').innerHTML=response.name;
+            document.getElementById('age').innerHTML=response.age_range.min;
+            document.getElementById('gender').innerHTML=response.gender;
+            //document.getElementById('location').innerHTML=response.name;
+            document.getElementById("img").src=response.picture.data.url;
+
+
+            console.log( response);
+        });
+    }
+</script>
+
+</body>
+</html>
