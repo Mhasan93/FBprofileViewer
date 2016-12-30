@@ -52,9 +52,11 @@ app.get('/usersList', function (req, res) {
  });
 
 app.post('/addUser',function (req,res) {
+    console.log("from add user");
     console.log(req.body);
     db.users.insert(req.body,function (err,user) {
         res.json(user);
+
 
     })
 

@@ -1,6 +1,12 @@
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ['angularUtils.directives.dirPagination']);
+//var app = angular.module("myApp", ['ui.router', 'angularUtils.directives.dirPagination']);
+app.filter('startFrom',function($filter){
+    return function(user,start){
+        return user.slice(start);
 
-app.controller('appCtrl', function($scope ,$http,$attrs) {
+    }
+})
+app.controller('appCtrl', function($scope ,$http,$attrs,$filter) {
     console.log("hello from controller");
 
     var refresh=function () {
@@ -8,13 +14,32 @@ app.controller('appCtrl', function($scope ,$http,$attrs) {
             console.log("  I recived json data i requested");
             console.log(response.data);
             $scope.usersList=response.data;
+            var data=$scope.usersList;
+
+
 
         });
 
     }
+
+
+    $scope.sortColumn="name";
+    $scope.reverseSort= false;
+    $scope.sortData=function (coulmn) {
+        $scope.reverseSort=($scope.sortColumn==coulmn)?!$scope.reverseSort :false;
+        $scope.sortColumn=coulmn;
+    }
+    $scope.getSortClass = function (column) {
+        if ($scope.sortColumn == column) {
+            return $scope.reverseSort ? 'arrow-down' : 'arrow-up';
+        } return '';// remove arrow from other columns till i preess it
+    }
+
+
     refresh();
 
     $scope.addUser=function () {
+        console.log("from add user");
         console.log($scope.user );
         $http.post('/addUser',$scope.user).then(function (response) {
             console.log(response.data);
@@ -57,4 +82,5 @@ app.controller('appCtrl', function($scope ,$http,$attrs) {
 
 
 });
+
 

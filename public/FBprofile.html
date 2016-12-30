@@ -152,13 +152,13 @@
                 console.log('You are not logged into Facebook.');
             }
             console.log(response.status);
-        }, {scope:  'email,public_profile,user_freiends,user_birthday' });
+        }, {scope:  'email,public_profile,user_freiends,user_birthday,user_work_history' });
 
     }
 
     // getting basic user info
     function getInfo() {
-        FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id,gender,location,birthday,age_range,picture.width(150).height(150)'}, function(response) {
+        FB.api('/me', 'GET', {fields: 'work,last_name,name,id,gender,location,birthday,age_range,picture.width(150).height(150)'}, function(response) {
             console.log( response);
 //            document.getElementById('status').innerHTML = "<img src='" + response.picture.data.url + "'>";
             document.getElementById('name').innerHTML=response.name;

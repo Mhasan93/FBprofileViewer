@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en "ng-app="myApp" ng-controller="appCtrl">
+<html lang="en " >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,10 +18,9 @@
     <!-- Jquery-->
     <script src="js/jquery-3.1.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--<script src="/js/test.js"></script>-->
-
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body ng-app="myApp" ng-controller="appCtrl">
 <nav class="navbar navbar-default">
 <div class="container-fluid">
 <!-- Brand and toggle get grouped for better mobile display -->
@@ -41,7 +40,7 @@
 </ul>
 </div><!-- /.navbar-collapse -->
 </nav>
-<div class="container">
+<div class="container" >
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <h1>Contact Users List</h1>
@@ -54,14 +53,20 @@
 
     </div>
     <div class="row">
-        <div class="col-md-12 col-lg-12">
-
-            <table id="example" datatable="ng" dt-options="worker.dtOptions" class="display" cellspacing="0" width="100%">
+        <div class="col-md-12 col-lg-12"   >
+            <input  type="text" placeholder="Search User" ng-model="searchBox">
+            <table   class="table"class="display" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Number</th>
+                    <th ng-click="sortData('name')">
+                        Name<div ng-class="getSortClass('name')"></div>
+                    </th>
+                    <th ng-click="sortData('email')">
+                        Email<div ng-class="getSortClass('email')"></div>
+                    </th>
+                    <th ng-click="sortData('number')">
+                        Number<div ng-class="getSortClass('number')"></div>
+                    </th>
                     <th>Edit Icon</th>
                     <th>Delete Icon</th>
                 </tr>
@@ -80,7 +85,7 @@
 
 
                 <tbody>
-                <tr ng-repeat="user in usersList">
+                <tr dir-paginate="user in usersList | filter:searchBox |orderBy:sortColumn:reverseSort|itemsPerPage:5  ">
                     <td><a ng-href="{{user.FacebookURL}}">{{user.name}}</a></td>
                     <td>{{user.email}}</td>
                     <td>{{user.phone}}</td>
@@ -94,6 +99,7 @@
 
                 </tbody>
             </table>
+            <dir-pagination-controls></dir-pagination-controls>
         </div>
     </div>
 </div>
@@ -149,19 +155,13 @@
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" ></script>
+<script src="/js/dirPagination.js"></script>
+
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script src="/controllers/controller.js"></script>
 <script src="controllers/controller.js"></script>
 
 
-<script>
-
-
-    $(document).ready(function() {
-        var table = $('#example').DataTable();
-
-    } );
-</script>
 
 </body>
 </html>

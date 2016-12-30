@@ -45,14 +45,14 @@
             } else {
                 document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
             }
-        }, {scope: 'email'});
+        }, {scope: 'email,user_work_history,user_birthday,user_education_history',return_scope:true});
     }
 
     // getting basic user info
     function getInfo() {
-        FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id,gender,birthday,age_range,picture.width(150).height(150)'}, function(response) {
+        FB.api('/me', 'GET', {fields: 'education,name,id,gender,birthday,work,age_range,picture.width(150).height(150)'}, function(response) {
             document.getElementById('status').innerHTML = response.id;
-            document.getElementById('status').innerHTML = "<img src='" + response.picture.data.url + "'>";
+          //  document.getElementById('status').innerHTML = "<img src='" + response.picture.data.url + "'>";
 
            console.log( response);
         });
