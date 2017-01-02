@@ -1,7 +1,7 @@
 {
   "name": "FB profile viewer: Node.js",
   "description": "A barebones Node.js app using Express 4",
-  "repository": " ",
+  "repository": "https://github.com/Mhasan93/FBprofileViewer.git ",
   "logo": "",
   "keywords": ["node", "express", "static"],
   "image": "heroku/nodejs"
